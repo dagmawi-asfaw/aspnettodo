@@ -87,7 +87,7 @@ app.MapDelete("/todo/{id}", Results<Ok, NotFound> (int id, TodoDb db) =>
     {
         db.todos.Remove(result);
         db.SaveChanges();
-        TypedResults.Ok();
+        return TypedResults.Ok();
     }
 });
 
