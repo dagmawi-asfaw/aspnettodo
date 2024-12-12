@@ -5,12 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Todo.Model;
 using Todo.TodoDb;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc;
 
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // add the data base connection
 builder.Services.AddDbContext<TodoDb>(options => options.UseInMemoryDatabase("TodoList"));
+
 
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -30,9 +32,7 @@ WebApplication app = builder.Build();
 
 
 
-app.MapGet("/", () => "Hello World!");
 
-app.Run();
 
 
 
@@ -63,15 +63,20 @@ app.MapGet("/todo/{id}", Results<Ok<TodoModel>, NotFound> (int id, TodoDb db) =>
 });
 
 
-app.MapPost("/todo", async (TodoModel todo, TodoDb db) =>
+app.MapPost("/todo", Results<Ok<TodoModel>, NotFound> ([FromBody]TodoModel todo, TodoDb db) =>
 {
     db.todos.Add(todo);
-    await db.SaveChangesAsync();
+    db.SaveChanges();
 
-    return Results.Created($"/todo/{todo.id}", todo);
+    return TypedResults.Ok<TodoModel>(todo);
 
 });
 
+// app.MapPost("/todo", (TodoModel task) =>
+// {
+//     return TypedResults.Ok<TodoModel>(task);
+
+// });
 
 
 app.MapDelete("/todo/{id}", Results<Ok, NotFound> (int id, TodoDb db) =>
@@ -92,5 +97,6 @@ app.MapDelete("/todo/{id}", Results<Ok, NotFound> (int id, TodoDb db) =>
 });
 
 
+app.Run();
 
 

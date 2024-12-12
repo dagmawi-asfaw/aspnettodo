@@ -1,0 +1,30 @@
+ GET  http://localhost:5168/todo/
+
+###
+
+ GET  http://localhost:5168/todo/{id}
+
+ {
+    "id":"dd"
+ }
+
+ ###
+
+
+POST  http://localhost:5168/todo
+content-type: application/json
+
+{
+    "id":1,
+    "name": "create sub cat",
+    "dueDate": "2024-12-12",
+    "isCompleted":false,
+}
+
+###
+
+ DELETE   http://localhost:5168/todo/{id}
+
+ {
+    "id":1
+ }

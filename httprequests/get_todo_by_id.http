@@ -1,7 +1,0 @@
-
- GET  http://localhost:5168/todo/{id}
-
-
- {
-    "id":"dd"
- }
