@@ -1,0 +1,9 @@
+POST  http://localhost:5168/todo/
+content-type: application/json
+
+{
+    "id":1,
+    "name": "create sub cat",
+    "dueDate": "Wed, 21 Oct 2015 18:27:50 GMT",
+    "isCompleted":false,
+}
