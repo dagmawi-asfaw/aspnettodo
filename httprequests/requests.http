@@ -2,17 +2,15 @@
 
 ###
 
- GET  http://localhost:5168/todo/{id}
+ GET  http://localhost:5168/todo?id=1
 
- {
-    "id":"dd"
- }
+#  {
+#     "id":"2"
+#  }
 
  ###
 
-
 POST  http://localhost:5168/todo
-content-type: application/json
 
 {
     "id":1,
@@ -23,8 +21,12 @@ content-type: application/json
 
 ###
 
- DELETE   http://localhost:5168/todo/{id}
+ DELETE   http://localhost:5168/todo?id=2
 
- {
-    "id":1
- }
+#  {
+#     "id":1
+#  }
+
+###
+
+GET  http://localhost:5168/tasks/

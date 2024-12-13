@@ -1,6 +1,5 @@
 
 namespace Todo.Model;
-//public record TodoRecord(int id, string name, DateTime dueDate, bool isCompleted);
 
 
 public class TodoModel
